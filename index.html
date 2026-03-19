@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Google AI Studio App</title>
+    <script>
+      // Shim global for libraries that expect it, but do it safely
+      // Use a proxy or a separate object to prevent overwriting window properties
+      if (typeof global === 'undefined' || global === window) {
+        window.global = Object.create(window);
+      }
+      
+      // Prevent errors when libraries try to overwrite fetch on window
+      // This is a bit hacky but can help if the above shim is bypassed
+      try {
+        const originalFetch = window.fetch;
+        Object.defineProperty(window, 'fetch', {
+          configurable: false,
+          enumerable: true,
+          get: () => originalFetch,
+          set: () => { console.warn('Attempted to overwrite window.fetch - ignored'); }
+        });
+      } catch (e) {
+        // If it's already non-configurable, this will fail, which is fine
+      }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+

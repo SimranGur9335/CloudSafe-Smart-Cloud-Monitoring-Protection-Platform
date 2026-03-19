@@ -1,0 +1,7 @@
+{
+  "name": "CloudSafe",
+  "description": "AI-Powered Cloud Security Monitoring Platform with real-time anomaly detection, SOC dashboard, and live attack visualization.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}
